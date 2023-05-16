@@ -1,0 +1,85 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Restaurant{
+    protected:
+        int hamburger;
+        int toast;
+        string name;
+    public:
+        Restaurant(){};
+        virtual void fee(){
+            cout<<"Fee calculated"<<endl;
+        }
+        friend ostream& operator<<(ostream&, Restaurant*);
+};
+class ItalianRestaurant:public Restaurant{
+    int pizza;
+    public:
+        ItalianRestaurant(int h, int t, int p, string n){
+            hamburger = h;
+            toast = t;
+            pizza = p;
+            name = n;
+        }
+        void fee(){
+            double total = toast*2.5 + hamburger*8.4 + pizza*15.54;
+            cout<<"Italian Restaurant Fee is: "<<total<<endl;
+        }
+};
+class TurkishRestaurant : public Restaurant{
+    int kebap;
+    public:
+        TurkishRestaurant(int h, int t, int k, string n){
+            hamburger = h;
+            toast = t;
+            kebap = k;
+            name = n;
+        }
+        void fee(){
+            double total=toast*2.5 + hamburger*8.4 + kebap*6.5;
+            cout<<"Turkish Restaurnt Fee is: "<<total<<endl;
+        }
+};
+class ChineseRestaurant : public Restaurant{
+    int sushi;
+    public:
+        ChineseRestaurant(int h, int t, int s, string n){
+            hamburger = h;
+            toast=t;
+            sushi = s;
+            name = n;
+        }
+        void fee(){
+            double total = toast*2.5 + hamburger*8.4 + sushi*16.5;
+            cout << "Chinese Restaurant Fee is: "<<total<<endl;
+        }
+};
+void printMenuCost(Restaurant *ptr){
+    ptr->fee();
+}
+ostream& operator <<(ostream& out, Restaurant *r){
+    out<<r->name<<"Restaurant"<<endl;
+    return out;
+}
+int main(){
+    int pizza, kebap, toast, hamburger, sushi;
+    cout<<"Please enter the number of items: "<<endl;
+    cout<<"I will calculate the price for Italian, Turkish and Chinese Restaurant"<<endl;
+    cout<<"How many pizza, toast, hamburger, kebap and sushi you want to order?";
+    cin>>pizza>>toast>>hamburger>>kebap>>sushi;
+    Restaurant* Italian = new ItalianRestaurant(toast, hamburger, pizza, "Italiano");
+    Restaurant* Turkish = new TurkishRestaurant(toast, hamburger, kebap, "Turk Mutfagi");
+    Restaurant* Chinese = new ChineseRestaurant(toast, hamburger, sushi, "Chino");
+    cout << Italian;
+    printMenuCost(Italian);
+    cout<<endl;
+    cout << Turkish;
+    printMenuCost(Turkish);
+    cout<<endl;
+    cout << Chinese;
+    printMenuCost(Chinese);
+    delete Italian;
+    delete Turkish;
+    delete Chinese;
+}
