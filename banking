@@ -1,0 +1,69 @@
+#include<iostream>
+using namespace std;
+
+class Account
+{
+	int balance;
+public:
+	void initialize (int);
+	int check()
+		{
+			return balance;
+		}
+	void withdraw(int);
+	void deposit (int money)
+		{
+			balance+=money;	
+		}		
+};
+
+void Account::initialize (int x)
+{
+	balance=x;
+}
+
+void Account::withdraw (int x)
+{
+	if(balance<x)
+	cout<<"not enough money"<<endl;
+	else
+	balance-=x;
+}
+
+main()
+{
+	Account mine;
+	char action;
+	int amount;
+	cout<<"enter initial balance: ";
+	cin>>amount;
+	mine.initialize(amount);
+	do
+	{
+		cout<<"enter b-balance, w-withdraw,d-deposit,q-quit";
+		cin>>action;
+		if(action=='B')
+			cout<<"Balance: "<<mine.check()<<endl;
+		else if(action=='W')
+		{
+			cout<<"amount to withdraw:";
+			cin>>amount;
+			mine.withdraw(amount);
+		}
+		else if (action=='D')
+		{
+			cout<<"amount to deposit:";
+			cin>>amount;
+			mine.deposit(amount);
+		}
+	}while(action!='Q');
+	
+}
+
+
+
+
+
+
+
+
