@@ -1,0 +1,100 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Film {
+    private:
+        string name;
+        string type;
+        double film_registration_fee;
+        
+    public:
+        Film(string n, string t) {
+            name = n;
+            type = t;
+            film_registration_fee = 0.0;
+        }
+        
+        string getName() {
+            return name;
+        }
+        
+        void setFee(double fee) {
+            film_registration_fee = fee;
+        }
+        
+        string getType() {
+            return type;
+        }
+        
+        double getFee() {
+            return film_registration_fee;
+        }
+        
+        friend double calculateMonthlyFee(Film f);
+        void add() {
+            cout << "Enter the film's registration fee: ";
+            cin >> film_registration_fee;
+        }
+};
+
+double calculateMonthlyFee(Film f) {
+    double daily_fee = 0.0;
+    if (f.getType() == "Animation") {
+        daily_fee = 11.0;
+    }
+    else if (f.getType() == "Action") {
+        daily_fee = 17.0;
+    }
+    else {
+        daily_fee = 15.0;
+    }
+    f.setFee(daily_fee * 30);
+    return f.getFee();
+}
+
+int main() {
+	Film films[2] = {Film("Up", "Animation"),Film("John Wick", "Action")};
+
+    int film_choice;
+    
+    char choice;
+    
+    while (true) {
+        cout << "Do you want to add or watch a film (a/w), or enter (C) for exit the system:";
+        
+        cin >> choice;
+
+        if (choice == 'a') {
+            cout << "Enter the name of the film to be added: ";
+            string name;
+            cin >> name;
+            cout << "Enter the type of the film: ";
+            string type;
+            cin >> type;
+            Film new_film(name, type);
+            new_film.add();
+            films[1] = new_film;
+        }
+        else if (choice == 'w') {
+            cout << "Enter the number of the film to watch: ";
+            cin >> film_choice;
+            if (film_choice > 0 && film_choice <= 2) {
+                double monthly_fee = calculateMonthlyFee(films[film_choice-1]);
+                cout << "The monthly fee for " << films[film_choice-1].getName() << " is $" << monthly_fee << endl;
+            }
+            else {
+                cout << "Invalid film number" << endl;
+            }
+        }
+        else if (choice == 'C') {
+            cout << "Exit the program" << endl;
+            break;
+        }
+        else {
+            cout << "Invalid choice" << endl;
+        }
+    }
+
+    return 0;
+}
