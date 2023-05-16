@@ -1,0 +1,24 @@
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+
+int main()
+{
+	int s, t, h;
+	char select;
+	
+	do
+	{
+		cout<<"Enter two sides of the triangle: ";
+		cin>>s>>t;
+		cout<<"Enter the hypotenuse of the triangle: ";
+		cin>>h;
+		if((sqrt(s*s+t*t))==h)
+		cout<<"Perpendicular Triangle"<<endl;
+		cout<<"Do you want to continue? (Y/N): ";
+		cin>>select;
+	}while((select!='N'));
+	
+	return 0;
+}
