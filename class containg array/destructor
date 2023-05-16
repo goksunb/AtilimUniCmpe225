@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+class Bank{
+	int number[8];
+	public:
+		Bank(int=0);
+		void print();
+};
+Bank::Bank(int n)
+{
+	for(int i=0;i<8;i++)
+	number[i]=n;
+}
+void Bank::print()
+{
+	for(int j=0; j<8;++j)
+	cout<<number[j]<<endl;
+	
+}
+main()
+{
+	Bank x(3);
+	x.print();
+	Bank y;
+	y.print();
+	
+	
+}
+
+
