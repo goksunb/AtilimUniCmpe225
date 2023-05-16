@@ -1,0 +1,26 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	int age, day, total;
+	
+	cout<<"Enter the age of the child: ";
+	cin>>age;
+	cout<<"How many days will you stay in the hotel? ";
+	cin>>day;
+	
+	total=2*day*150;
+	if(age>10)
+	{
+		total=total+day*150;
+	}
+	else if(age>=5)
+	{
+		total=total+day*100;
+	}
+	cout<<"Total price: "<<total<<endl;
+	
+	return 0;
+}
