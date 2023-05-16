@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int g=10;
+class {
+	int a,w;
+	public:
+		B(int x,int y=0) {a=x; w=y;}
+		~B() {cout<<a<<""<<w<<""<<g<<endl;}
+		void find(int &,int)
+		void find(int &);
+		void display(){cout<<a<<""<<w<<endl;}
+};
+
+void B::find(int &p,int s)
+{
+	int g;
+	g=s+10;
+	p=2*s;
+	s=g+1;
+	a=p;
+	w=s;
+}
+
+void B::find(int &y)
+{
+	int g;
+	g=y;
+	++y;
+	a=::g;
+	w=y;
+}
+main()
+{
+	B b1(5), b2(2,4);
+	int g=3, m=1;
+	::g=::g+1;
+	b1.find(g,m);
+	b1.display();
+	++g;
+	::g=g+1;
+	b2.find(g);
+	b2.display();
+	cout<<m<<""<<g<<endl;
+	cout<<::g<<endl;
+}
