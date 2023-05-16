@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person{
+	
+    protected:
+        int id;
+        string name;
+        
+    public:
+        Person(int i, string n){
+            id=i;
+            name=n;
+        }
+};
+
+class Student : public Person{
+	
+    private:
+    	
+        float cgpa;
+        
+    public:
+        Student(int i, string n, float e) : Person(i, n), cgpa(e){
+        }
+        void check(){
+            if(cgpa >= 3.0){
+                cout<<name<<" is an honor student."<<endl;
+            }
+        }
+};
+
+int main(){
+    int st_id;
+    string st_name;
+    float st_cgpa;
+    for(int i = 0; i < 10; i++){
+        cout<<"Enter id, name, and cgpa of the student:"<<endl;
+        cin >> st_id >> st_name >> st_cgpa;
+        Student st(st_id, st_name, st_cgpa);
+        st.check();
+    }
+    return 0;
+}
