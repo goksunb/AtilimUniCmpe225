@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+ 
+main()
+{
+    int balance = 1000;
+    int tra,amount;
+     
+    cout<<"Your balance: "<<balance<<endl;
+    
+    cout<<"**** TRANSACTION ****"<<endl;
+    cout<<"1. Withdrawal"<<endl;
+    cout<<"2. Deposit"<<endl;
+    cout<<"3. Check balance"<<endl;
+    cout<<"4. Cancel"<<endl;
+    
+    while(tra != 4)
+	{
+        cout<<"Enter your transaction: ";
+        cin>>tra;
+        
+        switch(tra){
+            case 1:
+                cout<<"Your balance : "<<balance<<endl;
+                cout<<"Enter the amount that you want to withdraw : ";
+                cin>>amount;
+                if(amount>1000){
+                cout<<"Your balance is not enough!! Please enter the different amount!";
+                cin>>amount;
+            }
+            balance -= amount;
+            cout<<"New balance is: "<<balance<<endl;
+            break;
+            case 2:
+                cout<<"Your balance : "<<balance<<endl;
+                cout<<"Enter the amount that you want to deposit : ";
+                cin>>amount;
+                balance += amount;
+                cout<<"New balance is: "<<balance<<endl;
+                break;
+            case 3:
+                cout<<"Your balance : "<<balance<<endl;
+                break;      
+        }
+    }
+    cout<<"Have a nice day.";
+}
