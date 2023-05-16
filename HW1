@@ -1,0 +1,108 @@
+#include<iostream>
+#include <istream>
+#include <ostream>
+using namespace std;
+
+class Hours {    
+    public: 
+    	int hour;   
+    	int minutes;  
+		  
+    friend istream& operator>>(istream& in, Hours& h);  
+    friend ostream& operator<<(ostream& out, Hours& h); 
+};
+
+	istream& operator >> (istream& in, Hours& h)
+			{   
+    			in >> h.hour >> h.minutes;  
+    			return in;  
+			}
+
+	ostream& operator << (ostream& out, Hours& h)
+			{    
+    			out << h.hour << ":" << h.minutes;    
+    			return out; 
+			}
+
+class Animals {  
+    protected:  
+    	string id;  
+    	string animalName;  
+    	string ownerName;   
+    	string ownerSurname;    
+    	Hours totalHours;   
+    	int totalMins;  
+    
+    public:     
+    	Animals(string id, string animalName, string ownerName, string ownerSurname):id(id), animalName(animalName), ownerName(ownerName), ownerSurname(ownerSurname){}   
+    	
+		int calculateMinutes(Hours checkIn, Hours checkOut)
+		{    
+        	if(checkOut.hour>checkIn.hour)
+        	
+				{ 
+            		totalHours.hour=checkOut.hour-checkIn.hour; 
+            		totalHours.minutes=checkOut.minutes-checkIn.minutes;    
+            		totalMins=(totalHours.hour*60)+totalHours.minutes;  
+            		return totalMins;   
+        		}
+        		
+        	else if(checkOut.hour==checkIn.hour && checkOut.minutes>checkIn.minutes)
+        	
+				{   
+            		totalHours.hour=checkOut.hour-checkIn.hour; 
+            		totalHours.minutes=checkOut.minutes-checkIn.minutes;   
+            		totalMins=(totalHours.hour*60)+totalHours.minutes;  
+            		return totalMins;   
+        		}
+        		
+        	else if(checkOut.hour==checkIn.hour && checkOut.minutes<checkIn.minutes)
+        	
+				{   
+            		totalHours.hour=(checkOut.hour+1)-checkIn.hour; 
+            		totalHours.minutes=(checkOut.minutes+60)-checkIn.minutes;   
+            		totalMins=(totalHours.hour*60)+totalHours.minutes;  
+            		return totalMins;   
+        		}
+        		
+        	else
+        	
+				{   
+            		cout<<"Plase enter apropriate time."<<endl;   
+            		return 0;   
+        		}
+    	}
+};
+
+class Cat:public Animals
+	{   
+    	protected:      
+    		string type;  
+			  
+    	public:    
+    		Cat(string id, string animalName, string ownerName, string ownerSurname, string type):Animals(id, animalName, ownerName, ownerSurname), type(type){}    
+    	
+		void printInfo()
+		
+			{   
+        		cout<<"Id of the animal is "<<id<<endl;   
+        		cout<<"Name of the animal is "<<animalName<<endl;   
+        		cout<<"Name of the animal's owner is "<<ownerName<<endl;    
+        		cout<<"Surname of the animal's owner is "<<ownerSurname<<endl;  
+        		cout<<"Type of the animal is "<<type<<endl;  
+    		}
+};
+
+int main()
+	{ 
+    	Cat cat("123456", "Goofy", "John", "Smith", "Cat"); 
+    	cat.printInfo();    
+    	Hours checkIn, checkOut;    
+    	cout<<"Enter check-in time: "<<endl;  
+    	cin>>checkIn;   
+    	cout<<"Enter check-out time: "<<endl; 
+    	cin>>checkOut;  
+    	cout<<"Check in and check out time are "<<checkIn<<"/"<<checkOut<<endl; 
+    	cout<<"The total time animal stays in the clinic is "<<cat.calculateMinutes(checkIn, checkOut)<<" minutes. !"<<endl;    
+    	return 0;       
+	}  
