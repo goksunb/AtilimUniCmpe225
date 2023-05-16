@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+class Complex {
+	int real,imaj;
+	public:
+		Complex (int r=0,int i=0):real(r),imaj(i){}
+		void print() {cout<<real<<" + "<<imaj<<"i"<<endl;}
+		friend Complex add(Complex &, Complex &);
+};
+
+Complex add(Complex &one, Complex &two)
+{
+	Complex n(one.real+two.real,one.imaj+two.imaj);
+	return n;
+}
+main()
+{
+	Complex b1(2,5), b2(3,4);
+	Complex b3=add(b1,b2);
+	b3.print();
+}
