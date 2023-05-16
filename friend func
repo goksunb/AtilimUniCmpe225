@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+class Integer{
+	int num;
+public:
+	Integer (int n=0): num(n){}
+	friend void print(Integer &);
+	void g(){cout<<"hello"<<endl;
+	}
+};
+void print(Integer &in)
+{
+	cout<<"num="<<in.num<<endl;
+}
+
+main()
+{
+	Integer x(5);
+	x.g();
+	print(x);
+}
