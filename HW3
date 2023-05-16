@@ -1,0 +1,172 @@
+#include <iostream>
+#include <ostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+#define MIN_DAY 1
+#define MAX_DAY 31
+#define MIN_YEAR 1900
+#define MAX_YEAR 2099
+#define MAX_MONTHS 12
+
+class Date
+{
+	public:
+		Date(int, string, int);
+		int day;
+		string month;
+		int year;
+};
+
+class Person
+{
+	public:
+		string first;
+		string last;
+		Date birthdate;
+
+		Person(string, string, int, string, int);
+	void setMonth(string month);
+	void printinfo(ostream&);
+};
+
+int main()
+{
+string months[MAX_MONTHS]={"January", "February", "March", "April", "May", "June", "July","August", "September", "October", "November", "December"
+};
+
+fstream file;
+ofstream out;
+string fileIn,fileOut, fname, lname, tmonth, errString;
+int tday, tyear, errValue;
+
+cout << "Enter the input file name: ";
+cin >> fileIn;
+fileIn="input.txt";
+
+cout << "Enter the output file name: ";
+cin >> fileOut;
+fileOut="output.txt";
+
+
+file.open(fileIn.c_str());
+
+	if (!file)
+	{
+		cout<<"Error opening input file!";
+		return 1;
+	}
+
+
+out.open(fileOut.c_str());
+
+	if (!out)
+	{
+		cout<<"Error opening output file!";
+		return 1;
+	}
+
+
+while (file >> fname >> lname >> tday >> tmonth >> tyear)
+	{
+		int monthFound=0, monthUpdateNeeded=0;
+		string oldMonth, newMonth;
+try
+{
+
+	if(tday< MIN_DAY || tday >MAX_DAY )
+	
+throw(tday);
+
+	if(tyear > MAX_YEAR || tyear < MIN_YEAR)
+	
+throw(tyear);
+
+for (int i=0; i<MAX_MONTHS; i++)
+	{
+		string tmp=tmonth.substr(0,3);
+		string tmp1=months[i].substr(0,3);
+
+int result = tmp1.compare(tmp);
+
+	if (result==0)
+	{
+		monthFound=1;
+		int r = months[i].compare(tmonth);
+	if (r!=0)
+	{
+		oldMonth=tmonth;
+		newMonth=months[i];
+		monthUpdateNeeded=1;
+		
+throw oldMonth;
+	}
+
+break;
+	}
+	}
+
+	if (monthFound == 0)
+	{
+	throw tmonth;
+	}
+}
+
+	catch (int errValue)
+{
+cout <<"Incorrect input for day/year: "<<errValue<<endl;
+
+	continue;
+}
+
+catch (string errMonth)
+{
+	if (monthFound==1)
+	{
+		cout <<"Incorrectly inputted month: "<<errMonth<<" is corrected to "<<tmonth<< endl;
+
+	}
+	
+	else
+	{
+		cout <<"Incorrectly inputted month: "<<errMonth<<endl;
+
+	continue;
+}
+}
+
+Person p(fname, lname, tday, tmonth, tyear);
+if (monthUpdateNeeded)
+p.setMonth(newMonth);
+p.printinfo(out);
+	}
+return 0;
+}
+
+Date::Date (int d, string m, int y)
+	{
+		day=d;
+		month=m;
+		year=y;
+	}
+
+Person::Person (string f, string l, int d, string m, int y): birthdate(d,m,y)
+	{
+		first=f;
+		last=l;
+	}
+
+
+void Person::setMonth (string m)
+	{
+		birthdate.month=m;
+		return;
+	}
+
+void Person::printinfo (ostream& out)
+	{
+		out << first<<" "<<last<<" -- "<<birthdate.month<<" "<<birthdate.day<<", "<<birthdate.year<<endl;
+		return;
+	}
