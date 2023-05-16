@@ -1,0 +1,524 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class exam
+{
+protected:
+    string name;
+    string date;
+    double totalScore;
+
+public:
+    exam(string name, string date)
+    {
+        this->name = name;
+        this->date = date;
+    }
+    virtual void calculateTotalScore() = 0;
+    virtual void print() = 0;
+};
+
+class TOEFL : public exam
+{
+private:
+    int reading;
+    int listening;
+    int speaking;
+    int writing;
+
+public:
+    TOEFL(string name, string date, int reading, int listening, int speaking, int writing) : exam(name, date)
+    {
+        this->reading = reading;
+        this->listening = listening;
+        this->speaking = speaking;
+        this->writing = writing;
+    }
+    void calculateTotalScore()
+    {
+        totalScore = reading + listening + speaking + writing;
+    }
+    void print()
+    {
+        cout << "Name: " << name << " Xam: TOEFL Date of Xam: " << date << endl;
+        cout << "Reading: " << reading << " Listening: " << listening << " Speaking: " << speaking << " Writing: " << writing << endl;
+        cout << "Total score: " << totalScore << endl;
+        cout << endl;
+    }
+};
+
+class IELTS : public exam
+{
+private:
+    int reading;
+    int listening;
+    int speaking;
+    int writing;
+    double readingScore;
+    double listeningScore;
+    double speakingScore;
+    double writingScore;
+
+public:
+    IELTS(string name, string date, int reading, int listening, int speaking, int writing) : exam(name, date)
+    {
+        this->reading = reading;
+        this->listening = listening;
+        this->speaking = speaking;
+        this->writing = writing;
+    }
+    void calculateTotalScore()
+    {
+        if (reading >= 40)
+        {
+            readingScore = 9;
+        }
+        else if (reading == 39)
+        {
+            readingScore = 8.5;
+        }
+        else if (reading == 38)
+        {
+            readingScore = 8;
+        }
+        else if (reading >= 36 && reading <= 37)
+        {
+            readingScore = 7.5;
+        }
+        else if (reading >= 34 && reading <= 35)
+        {
+            readingScore = 7;
+        }
+        else if (reading >= 32 && reading <= 33)
+        {
+            readingScore = 6.5;
+        }
+        else if (reading >= 30 && reading <= 31)
+        {
+            readingScore = 6;
+        }
+        else if (reading >= 26 && reading <= 29)
+        {
+            readingScore = 5.5;
+        }
+        else if (reading >= 23 && reading <= 25)
+        {
+            readingScore = 5;
+        }
+        else if (reading >= 19 && reading <= 22)
+        {
+            readingScore = 4.5;
+        }
+        else if (reading >= 15 && reading <= 18)
+        {
+            readingScore = 4;
+        }
+        else if (reading >= 12 && reading <= 14)
+        {
+            readingScore = 3.5;
+        }
+        else if (reading >= 8 && reading <= 11)
+        {
+            readingScore = 3;
+        }
+        else if (reading >= 5 && reading <= 7)
+        {
+            readingScore = 2.5;
+        }
+        else if (reading >= 2 && reading <= 4)
+        {
+            readingScore = 2;
+        }
+        else if (reading == 1)
+        {
+            readingScore = 1;
+        }
+        else
+        {
+            readingScore = 0;
+        }
+
+        if (listening >= 40)
+        {
+            listeningScore = 9;
+        }
+        else if (listening == 39)
+        {
+            listeningScore = 8.5;
+        }
+        else if (listening == 38)
+        {
+            listeningScore = 8;
+        }
+        else if (listening >= 36 && listening <= 37)
+        {
+            listeningScore = 7.5;
+        }
+        else if (listening >= 34 && listening <= 35)
+        {
+            listeningScore = 7;
+        }
+        else if (listening >= 32 && listening <= 33)
+        {
+            listeningScore = 6.5;
+        }
+        else if (listening >= 30 && listening <= 31)
+        {
+            listeningScore = 6;
+        }
+        else if (listening >= 26 && listening <= 29)
+        {
+            listeningScore = 5.5;
+        }
+        else if (listening >= 23 && listening <= 25)
+        {
+            listeningScore = 5;
+        }
+        else if (listening >= 19 && listening <= 22)
+        {
+            listeningScore = 4.5;
+        }
+        else if (listening >= 15 && listening <= 18)
+        {
+            listeningScore = 4;
+        }
+        else if (listening >= 12 && listening <= 14)
+        {
+            listeningScore = 3.5;
+        }
+        else if (listening >= 8 && listening <= 11)
+        {
+            listeningScore = 3;
+        }
+        else if (listening >= 5 && listening <= 7)
+        {
+            listeningScore = 2.5;
+        }
+        else if (listening >= 2 && listening <= 4)
+        {
+            listeningScore = 2;
+        }
+        else if (listening == 1)
+        {
+            listeningScore = 1;
+        }
+        else
+        {
+            listeningScore = 0;
+        }
+
+        if (speaking >= 40)
+        {
+            speakingScore = 9;
+        }
+        else if (speaking == 39)
+        {
+            speakingScore = 8.5;
+        }
+        else if (speaking == 38)
+        {
+            speakingScore = 8;
+        }
+        else if (speaking >= 36 && speaking <= 37)
+        {
+            speakingScore = 7.5;
+        }
+        else if (speaking >= 34 && speaking <= 35)
+        {
+            speakingScore = 7;
+        }
+        else if (speaking >= 32 && speaking <= 33)
+        {
+            speakingScore = 6.5;
+        }
+        else if (speaking >= 30 && speaking <= 31)
+        {
+            speakingScore = 6;
+        }
+        else if (speaking >= 26 && speaking <= 29)
+        {
+            speakingScore = 5.5;
+        }
+        else if (speaking >= 23 && speaking <= 25)
+        {
+            speakingScore = 5;
+        }
+        else if (speaking >= 19 && speaking <= 22)
+        {
+            speakingScore = 4.5;
+        }
+        else if (speaking >= 15 && speaking <= 18)
+        {
+            speakingScore = 4;
+        }
+        else if (speaking >= 12 && speaking <= 14)
+        {
+            speakingScore = 3.5;
+        }
+        else if (speaking >= 8 && speaking <= 11)
+        {
+            speakingScore = 3;
+        }
+        else if (speaking >= 5 && speaking <= 7)
+        {
+            speakingScore = 2.5;
+        }
+        else if (speaking >= 2 && speaking <= 4)
+        {
+            speakingScore = 2;
+        }
+        else if (speaking == 1)
+        {
+            speakingScore = 1;
+        }
+        else
+        {
+            speakingScore = 0;
+        }
+
+        if (writing >= 40)
+        {
+            writingScore = 9;
+        }
+        else if (writing == 39)
+        {
+            writingScore = 8.5;
+        }
+        else if (writing == 38)
+        {
+            writingScore = 8;
+        }
+        else if (writing >= 36 && writing <= 37)
+        {
+            writingScore = 7.5;
+        }
+        else if (writing >= 34 && writing <= 35)
+        {
+            writingScore = 7;
+        }
+        else if (writing >= 32 && writing <= 33)
+        {
+            writingScore = 6.5;
+        }
+        else if (writing >= 30 && writing <= 31)
+        {
+            writingScore = 6;
+        }
+        else if (writing >= 26 && writing <= 29)
+        {
+            writingScore = 5.5;
+        }
+        else if (writing >= 23 && writing <= 25)
+        {
+            writingScore = 5;
+        }
+        else if (writing >= 19 && writing <= 22)
+        {
+            writingScore = 4.5;
+        }
+        else if (writing >= 15 && writing <= 18)
+        {
+            writingScore = 4;
+        }
+        else if (writing >= 12 && writing <= 14)
+        {
+            writingScore = 3.5;
+        }
+        else if (writing >= 8 && writing <= 11)
+        {
+            writingScore = 3;
+        }
+        else if (writing >= 5 && writing <= 7)
+        {
+            writingScore = 2.5;
+        }
+        else if (writing >= 2 && writing <= 4)
+        {
+            writingScore = 2;
+        }
+        else if (writing == 1)
+        {
+            writingScore = 1;
+        }
+        else
+        {
+            writingScore = 0;
+        }
+
+        if (totalScore >= 40)
+        {
+            totalScore = 9;
+        }
+        else if (totalScore == 39)
+        {
+            totalScore = 8.5;
+        }
+        else if (totalScore == 38)
+        {
+            totalScore = 8;
+        }
+        else if (totalScore >= 36 && totalScore <= 37)
+        {
+            totalScore = 7.5;
+        }
+        else if (totalScore >= 34 && totalScore <= 35)
+        {
+            totalScore = 7;
+        }
+        else if (totalScore >= 32 && totalScore <= 33)
+        {
+            totalScore = 6.5;
+        }
+        else if (totalScore >= 30 && totalScore <= 31)
+        {
+            totalScore = 6;
+        }
+        else if (totalScore >= 26 && totalScore <= 29)
+        {
+            totalScore = 5.5;
+        }
+        else if (totalScore >= 23 && totalScore <= 25)
+        {
+            totalScore = 5;
+        }
+        else if (totalScore >= 19 && totalScore <= 22)
+        {
+            totalScore = 4.5;
+        }
+        else if (totalScore >= 15 && totalScore <= 18)
+        {
+            totalScore = 4;
+        }
+        else if (totalScore >= 12 && totalScore <= 14)
+        {
+            totalScore = 3.5;
+        }
+        else if (totalScore >= 8 && totalScore <= 11)
+        {
+            totalScore = 3;
+        }
+        else if (totalScore >= 5 && totalScore <= 7)
+        {
+            totalScore = 2.5;
+        }
+        else if (totalScore >= 2 && totalScore <= 4)
+        {
+            totalScore = 2;
+        }
+        else if (totalScore == 1)
+        {
+            totalScore = 1;
+        }
+        else
+        {
+            totalScore = 0;
+        }
+
+        if (readingScore == 0 || listeningScore == 0 || speakingScore == 0 || writingScore == 0 || totalScore == 0)
+        {
+            cout << "Your score is invalid." << endl;
+        }
+        else
+        {
+            print();
+        }
+    }
+
+    void print()
+    {
+        cout << "\nName: " << name << " Exam: IELETS Date of exam: " << date << endl;
+        cout << "Reading: " << reading << " Listening: " << listening << " Speaking: " << speaking << " Writing: " << writing << endl;
+        cout << "Total score: " << totalScore << endl;
+        cout << endl;
+    }
+};
+
+class Yokdil : public exam
+{
+private:
+    int correctAnswers;
+    double totalScore;
+
+public:
+    Yokdil(string name, string date, int correctAnswers) : exam(name, date)
+    {
+        this->correctAnswers = correctAnswers;
+    }
+
+    void calculateTotalScore()
+    {
+        totalScore = correctAnswers * 1.25;
+        print();
+    }
+
+    void print()
+    {
+        cout << "\nName: " << name << " Exam: YOKDIL Date of Exam: " << date << endl;
+        cout << "Total score: " << totalScore << endl;
+        cout << endl;
+    }
+};
+
+int main()
+{
+    int totalStudents = 3;
+    while (totalStudents > 0)
+    {
+        string name, date;
+        cout << "Enter name of student: ";
+        cin >> name;
+        cout << "Enter date of Exam: ";
+        cin.ignore();
+        getline(cin, date);
+        cout << "Enter T for TOEFL, I for IELTS, Y for YOKDIL: ";
+        char examType;
+        cin >> examType;
+        if (examType == 'T')
+        {
+            int reading, listening, speaking, writing;
+            cout << "Enter reading score: ";
+            cin >> reading;
+            cout << "Enter listening score: ";
+            cin >> listening;
+            cout << "Enter speaking score: ";
+            cin >> speaking;
+            cout << "Enter writing score: ";
+            cin >> writing;
+            TOEFL toefl(name, date, reading, listening, speaking, writing);
+            toefl.calculateTotalScore();
+            toefl.print();
+        }
+        else if (examType == 'I')
+        {
+            int reading, listening, speaking, writing;
+            cout << "Enter reading score: ";
+            cin >> reading;
+            cout << "Enter listening score: ";
+            cin >> listening;
+            cout << "Enter speaking score: ";
+            cin >> speaking;
+            cout << "Enter writing score: ";
+            cin >> writing;
+            IELTS ielts(name, date, reading, listening, speaking, writing);
+            ielts.calculateTotalScore();
+            ielts.print();
+        }
+        else if (examType == 'Y')
+        {
+            int correctAnswers;
+            cout << "Enter number of correct answers: ";
+            cin >> correctAnswers;
+            Yokdil yokdil(name, date, correctAnswers);
+            yokdil.calculateTotalScore();
+            yokdil.print();
+        }
+        else
+        {
+            cout << "Invalid exam type." << endl;
+        }
+        totalStudents--;
+    }
+    return 0;
+}
